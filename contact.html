@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Neethify</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    html, body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+        <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+      </a>
+
+      <!-- Navigation -->
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-4">
+          <a href="index.html" class="hover:text-blue-600">Home</a>
+          <a href="about.html" class="hover:text-blue-600">About</a>
+          <a href="services.html" class="hover:text-blue-600">Services</a>
+          <a href="faq.html" class="hover:text-blue-600">FAQ</a>
+          <a href="blog.html" class="hover:text-blue-600">Blog</a>
+          <a href="contact.html" class="text-blue-600 font-semibold">Contact</a>
+          <a href="buy.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+        </nav>
+
+        <!-- Social Icons -->
+        <div class="hidden md:flex space-x-3 text-lg">
+          <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Theme Script -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const toggleIcon = document.getElementById("toggle-icon");
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        html.classList.add("dark");
+        toggleIcon.classList.remove("fa-moon");
+        toggleIcon.classList.add("fa-sun");
+      } else {
+        html.classList.remove("dark");
+        toggleIcon.classList.remove("fa-sun");
+        toggleIcon.classList.add("fa-moon");
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const isDark = html.classList.contains("dark");
+      setTheme(isDark ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>

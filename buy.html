@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buy Now | Neethify</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    html, body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+        <span class="text-2xl font-bold">Neethify</span>
+      </a>
+
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-4">
+          <a href="index.html" class="hover:text-blue-600">Home</a>
+          <a href="about.html" class="hover:text-blue-600">About</a>
+          <a href="services.html" class="hover:text-blue-600">Services</a>
+          <a href="faq.html" class="hover:text-blue-600">FAQ</a>
+          <a href="blog.html" class="hover:text-blue-600">Blog</a>
+          <a href="contact.html" class="hover:text-blue-600">Contact</a>
+          <a href="buy.html" class="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+        </nav>
+
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <main class="pt-28 pb-16 px-4 max-w-7xl mx-auto">
+    <h1 class="text-4xl font-bold mb-6 text-center">Choose Your Plan</h1>
+    <p class="text-center mb-12 text-gray-600 dark:text-gray-300">Flexible legal support packages designed for individuals and businesses.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Free Plan -->
+      <div class="border p-6 rounded-lg shadow dark:border-gray-600">
+        <h2 class="text-2xl font-semibold mb-4">Free</h2>
+        <p class="text-3xl font-bold mb-4">₹0</p>
+        <ul class="mb-6 space-y-2">
+          <li>✔️ Access to blog articles</li>
+          <li>✔️ Basic legal tips</li>
+          <li>✔️ Email support</li>
+        </ul>
+        <a href="#" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Start Free</a>
+      </div>
+
+      <!-- Standard Plan -->
+      <div class="border p-6 rounded-lg shadow dark:border-gray-600 bg-blue-50 dark:bg-gray-800">
+        <h2 class="text-2xl font-semibold mb-4">Standard</h2>
+        <p class="text-3xl font-bold mb-4">₹999/mo</p>
+        <ul class="mb-6 space-y-2">
+          <li>✔️ 2 Legal Consultations/month</li>
+          <li>✔️ Document review</li>
+          <li>✔️ Priority email support</li>
+        </ul>
+        <a href="#" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Choose Plan</a>
+      </div>
+
+      <!-- Premium Plan -->
+      <div class="border p-6 rounded-lg shadow dark:border-gray-600">
+        <h2 class="text-2xl font-semibold mb-4">Premium</h2>
+        <p class="text-3xl font-bold mb-4">₹1999/mo</p>
+        <ul class="mb-6 space-y-2">
+          <li>✔️ Unlimited consultations</li>
+          <li>✔️ Legal document drafting</li>
+          <li>✔️ Phone and video support</li>
+        </ul>
+        <a href="#" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Choose Premium</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const toggleIcon = document.getElementById("toggle-icon");
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        html.classList.add("dark");
+        toggleIcon.classList.remove("fa-sun");
+        toggleIcon.classList.add("fa-moon");
+      } else {
+        html.classList.remove("dark");
+        toggleIcon.classList.remove("fa-moon");
+        toggleIcon.classList.add("fa-sun");
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const isDark = html.classList.contains("dark");
+      setTheme(isDark ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>

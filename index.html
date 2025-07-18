@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Neethify | The Law Firm And Legal Advisor</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    html, body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+        <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+      </a>
+
+      <!-- Navigation + Social + Toggle -->
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-4">
+          <a href="index.html" class="hover:text-blue-600">Home</a>
+          <a href="about.html" class="hover:text-blue-600">About</a>
+          <a href="services.html" class="hover:text-blue-600">Services</a>
+          <a href="faq.html" class="hover:text-blue-600">FAQ</a>
+          <a href="blog.html" class="hover:text-blue-600">Blog</a>
+          <a href="contact.html" class="hover:text-blue-600">Contact</a>
+          <a href="buy.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+        </nav>
+
+        <!-- Social Icons -->
+        <div class="hidden md:flex space-x-3 text-lg">
+          <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600" aria-label="Twitter">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative h-screen flex items-center justify-center pt-16 text-white">
+    <img src="https://images.pexels.com/photos/6077326/pexels-photo-6077326.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+         alt="Law background"
+         class="absolute inset-0 w-full h-full object-cover z-0 opacity-90">
+    <div class="relative z-10 bg-black bg-opacity-70 p-8 rounded-lg max-w-3xl text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Justice. Integrity. Advocacy.</h1>
+      <p class="text-lg md:text-xl mb-6">Neethify – The Law Firm and Legal Advisor You Can Trust</p>
+      <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md transition">Get in Touch</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="py-20 bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-12">Our Services</h2>
+      <div class="grid gap-10 md:grid-cols-3">
+        <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow hover:shadow-xl transition">
+          <i class="fas fa-gavel text-indigo-600 text-5xl mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-2">Criminal Law</h3>
+          <p class="text-gray-700 dark:text-gray-300">Expert representation in criminal defense and litigation.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow hover:shadow-xl transition">
+          <i class="fas fa-balance-scale text-indigo-600 text-5xl mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-2">Civil Law</h3>
+          <p class="text-gray-700 dark:text-gray-300">Resolving disputes with compassion and legal precision.</p>
+        </div>
+        <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow hover:shadow-xl transition">
+          <i class="fas fa-handshake text-indigo-600 text-5xl mb-6"></i>
+          <h3 class="text-2xl font-semibold mb-2">Corporate Law</h3>
+          <p class="text-gray-700 dark:text-gray-300">Guidance on contracts, compliance & business law.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-white dark:bg-gray-900 transition duration-300">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">"Neethify handled my case with utmost professionalism. Their advice and support were invaluable."</p>
+          <div class="flex items-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full" alt="Client 1">
+            <div>
+              <h4 class="font-semibold">Amy Lee</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Business Owner</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">"I was impressed by their attention to detail and dedication. Truly a reliable legal team."</p>
+          <div class="flex items-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="w-12 h-12 rounded-full" alt="Client 2">
+            <div>
+              <h4 class="font-semibold">Mathew Trumph</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Startup Founder</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 italic">"From start to finish, Neethify kept me informed and confident. Highly recommend their services."</p>
+          <div class="flex items-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/men/85.jpg" class="w-12 h-12 rounded-full" alt="Client 3">
+            <div>
+              <h4 class="font-semibold">Stephen James</h4>
+              <p class="text-sm text-gray-500 dark:text-gray-400">Retired Officer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Theme Toggle Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("theme-toggle");
+      const icon = document.getElementById("toggle-icon");
+
+      function updateThemeIcon(isDark) {
+        icon.className = isDark
+          ? "fas fa-sun text-yellow-400"
+          : "fas fa-moon text-gray-800";
+      }
+
+      function setTheme(theme) {
+        if (theme === "dark") {
+          html.classList.add("dark");
+        } else {
+          html.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
+        updateThemeIcon(theme === "dark");
+      }
+
+      const storedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+      setTheme(initialTheme);
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = html.classList.contains("dark");
+        setTheme(isDark ? "light" : "dark");
+      });
+
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

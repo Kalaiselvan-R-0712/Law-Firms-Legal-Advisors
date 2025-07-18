@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Post | Neethify</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    html, body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+        <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+      </a>
+
+      <!-- Navigation + Social + Toggle -->
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-4">
+          <a href="index.html" class="hover:text-blue-600">Home</a>
+          <a href="about.html" class="hover:text-blue-600">About</a>
+          <a href="services.html" class="hover:text-blue-600">Services</a>
+          <a href="faq.html" class="hover:text-blue-600">FAQ</a>
+          <a href="blog.html" class="text-blue-600 font-semibold">Blog</a>
+          <a href="contact.html" class="hover:text-blue-600">Contact</a>
+          <a href="buy.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+        </nav>
+
+        <!-- Social Icons -->
+        <div class="hidden md:flex space-x-3 text-lg">
+          <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Blog Content -->
+  <main class="pt-28 px-4 max-w-4xl mx-auto pb-20">
+    <article>
+      <h1 class="text-4xl font-bold mb-4">How to Choose the Right Lawyer for Your Case</h1>
+      <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">Posted on July 17, 2025 • 5 min read</p>
+      <img src="https://picsum.photos/800/400?random=10" alt="Blog Image" class="rounded-lg mb-6 w-full">
+
+      <p class="mb-4">Choosing the right lawyer is one of the most important steps when facing legal issues. Whether it’s a criminal charge, a family dispute, or a business disagreement, your lawyer should have experience in your specific area of need.</p>
+      <p class="mb-4">Start by researching their background and previous cases. Read reviews, schedule consultations, and evaluate how well they understand your situation. A good lawyer should be communicative, knowledgeable, and make you feel confident about your case.</p>
+      <p class="mb-4">Also, discuss fees upfront. Some lawyers work on a contingency basis, while others charge hourly. Understanding these details can prevent surprises later.</p>
+      <p class="mb-4">Remember, the right lawyer is not just about credentials—it’s about trust and communication. Make an informed choice for the best outcome.</p>
+    </article>
+
+    <!-- Social Share -->
+    <div class="mt-10 flex space-x-4 text-blue-600 text-lg">
+      <span>Share:</span>
+      <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <!-- Related Posts -->
+    <section class="mt-16">
+      <h2 class="text-2xl font-semibold mb-6">Related Posts</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+          <img src="https://picsum.photos/400/200?random=4" class="rounded mb-3" alt="Related post">
+          <h3 class="font-bold text-lg mb-2">Understanding Legal Rights</h3>
+          <a href="blog-post.html" class="text-blue-600 hover:underline text-sm">Read more →</a>
+        </div>
+        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+          <img src="https://picsum.photos/400/200?random=5" class="rounded mb-3" alt="Related post">
+          <h3 class="font-bold text-lg mb-2">Corporate Law Trends</h3>
+          <a href="blog-post.html" class="text-blue-600 hover:underline text-sm">Read more →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Script for Theme Toggle -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const toggleIcon = document.getElementById("toggle-icon");
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        html.classList.add("dark");
+        toggleIcon.classList.remove("fa-moon");
+        toggleIcon.classList.add("fa-sun");
+      } else {
+        html.classList.remove("dark");
+        toggleIcon.classList.remove("fa-sun");
+        toggleIcon.classList.add("fa-moon");
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const isDark = html.classList.contains("dark");
+      setTheme(isDark ? "light" : "dark");
+    });
+  </script>
+</body>
+</html>
