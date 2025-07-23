@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FAQ | Neethify</title>
+  <title>Neethify | The Law Firm And Legal Advisor</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: 'class'
-    };
+    tailwind.config = { darkMode: 'class' };
   </script>
 
   <!-- Font Awesome -->
@@ -27,11 +25,17 @@
   <!-- Header -->
   <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center space-x-2">
-        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
-        <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
-      </a>
+      <!-- Left section: Logo + Role/Buttons -->
+      <div class="flex items-center space-x-8">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+          <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+        </a>
+
+        <!-- Auth Info (injected by JS) -->
+        <div id="auth-section" class="flex items-center space-x-4"></div>
+      </div>
 
       <!-- Navigation + Social + Toggle -->
       <div class="flex items-center space-x-6">
@@ -42,7 +46,9 @@
           <a href="faq.html" class="text-blue-600 font-semibold">FAQ</a>
           <a href="blog.html" class="hover:text-blue-600">Blog</a>
           <a href="contact.html" class="hover:text-blue-600">Contact</a>
-          <a href="buy.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+          <a href="404.html" class="hover:text-blue-600">Guides</a>
+          <a href="coming-soon.html" class="hover:text-blue-600">NeethiAI</a>
+          <a href="buy.html" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
         </nav>
 
         <!-- Social Icons -->
@@ -61,6 +67,37 @@
     </div>
   </header>
 
+  <!-- FAQ Section -->
+  <section class="pt-28 pb-20 px-4 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold mb-10 text-center">Frequently Asked Questions</h1>
+
+    <div class="space-y-6">
+      <details class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
+        <summary class="font-semibold text-lg">What is Neethify?</summary>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">Neethify is a platform that provides legal services tailored to individuals, startups, and enterprises with professional support and guidance.</p>
+      </details>
+
+      <details class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
+        <summary class="font-semibold text-lg">How can I contact a lawyer?</summary>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">You can contact our legal experts through our <a href="contact.html" class="text-blue-600 underline">contact page</a> or by filling out the consultation form.</p>
+      </details>
+
+      <details class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
+        <summary class="font-semibold text-lg">Do you offer free consultations?</summary>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">Yes, we offer a free initial consultation to understand your legal needs before proceeding.</p>
+      </details>
+
+      <details class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
+        <summary class="font-semibold text-lg">Are my legal matters confidential?</summary>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">Absolutely. All your legal information and cases are handled with strict confidentiality.</p>
+      </details>
+
+      <details class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg cursor-pointer">
+        <summary class="font-semibold text-lg">What areas of law do you specialize in?</summary>
+        <p class="mt-2 text-gray-600 dark:text-gray-300">We specialize in civil, criminal, family, corporate, and property law. You can explore more on our <a href="services.html" class="text-blue-600 underline">services page</a>.</p>
+      </details>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
@@ -75,18 +112,17 @@
     const toggleBtn = document.getElementById("theme-toggle");
     const toggleIcon = document.getElementById("toggle-icon");
 
-    function updateThemeIcon() {
-      toggleIcon.classList = html.classList.contains("dark") ? "fas fa-sun text-yellow-400" : "fas fa-moon text-gray-800";
-    }
-
     function setTheme(theme) {
       if (theme === "dark") {
         html.classList.add("dark");
+        toggleIcon.classList.remove("fa-moon");
+        toggleIcon.classList.add("fa-sun");
       } else {
         html.classList.remove("dark");
+        toggleIcon.classList.remove("fa-sun");
+        toggleIcon.classList.add("fa-moon");
       }
       localStorage.setItem("theme", theme);
-      updateThemeIcon();
     }
 
     const storedTheme = localStorage.getItem("theme");
@@ -98,6 +134,49 @@
       const isDark = html.classList.contains("dark");
       setTheme(isDark ? "light" : "dark");
     });
+
+    // Auth Role Logic
+    const authSection = document.getElementById("auth-section");
+    const role = localStorage.getItem("role") || "guest";
+    const capitalRole = role.charAt(0).toUpperCase() + role.slice(1);
+
+    const roleStyles = {
+      guest: 'bg-yellow-100 text-yellow-800',
+      admin: 'bg-red-100 text-red-800',
+      customer: 'bg-green-100 text-green-800'
+    };
+
+    let roleDisplay = document.createElement("span");
+    roleDisplay.className = "text-sm text-gray-700 dark:text-gray-300 font-medium flex items-center gap-1";
+    roleDisplay.innerHTML = `You are: <span class="px-2 py-0.5 rounded ${roleStyles[role]} font-semibold">${capitalRole}</span>`;
+
+    let buttons = document.createElement("div");
+    buttons.className = "flex space-x-2";
+
+    if (role === "guest") {
+      buttons.innerHTML = `
+        <a href="login.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Login</a>
+        <a href="register.html" class="px-3 py-1 text-sm bg-gray-300 text-gray-900 rounded hover:bg-gray-400">Register</a>
+      `;
+    } else if (role === "admin") {
+      buttons.innerHTML = `
+        <a href="admin-dashboard.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
+        <button onclick="logout()" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
+      `;
+    } else if (role === "customer") {
+      buttons.innerHTML = `
+        <a href="customer-dashboard.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
+        <button onclick="logout()" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
+      `;
+    }
+
+    authSection.appendChild(roleDisplay);
+    authSection.appendChild(buttons);
+
+    function logout() {
+      localStorage.setItem("role", "guest");
+      window.location.href = "login.html";
+    }
   </script>
 </body>
 </html>

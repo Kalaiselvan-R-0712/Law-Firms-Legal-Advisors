@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Buy Now | Neethify</title>
+  <title>Neethify | The Law Firm And Legal Advisor</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: 'class'
-    };
+    tailwind.config = { darkMode: 'class' };
   </script>
 
   <!-- Font Awesome -->
@@ -27,11 +25,19 @@
   <!-- Header -->
   <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="flex items-center space-x-2">
-        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
-        <span class="text-2xl font-bold">Neethify</span>
-      </a>
+      <!-- Left section: Logo + Role/Buttons -->
+      <div class="flex items-center space-x-8">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+          <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+        </a>
 
+        <!-- Auth Info (injected by JS) -->
+        <div id="auth-section" class="flex items-center space-x-4"></div>
+      </div>
+
+      <!-- Navigation -->
       <div class="flex items-center space-x-6">
         <nav class="hidden md:flex space-x-4">
           <a href="index.html" class="hover:text-blue-600">Home</a>
@@ -40,9 +46,20 @@
           <a href="faq.html" class="hover:text-blue-600">FAQ</a>
           <a href="blog.html" class="hover:text-blue-600">Blog</a>
           <a href="contact.html" class="hover:text-blue-600">Contact</a>
-          <a href="buy.html" class="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
+          <a href="404.html" class="hover:text-blue-600">Guides</a>
+          <a href="coming-soon.html" class="hover:text-blue-600">NeethiAI</a>
+          <a href="buy.html" class="text-white bg-blue-600 px-4 py-2 rounded hover:bg-yellow-400">Buy Now</a>
         </nav>
 
+        <!-- Social Icons -->
+        <div class="hidden md:flex space-x-3 text-lg">
+          <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Theme Toggle -->
         <button id="theme-toggle" class="ml-4 text-xl">
           <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
         </button>
@@ -69,7 +86,7 @@
       </div>
 
       <!-- Standard Plan -->
-      <div class="border p-6 rounded-lg shadow dark:border-gray-600 bg-blue-50 dark:bg-gray-800">
+      <div class="border p-6 rounded-lg shadow dark:border-gray-600 bg-yellow-50 dark:bg-gray-800">
         <h2 class="text-2xl font-semibold mb-4">Standard</h2>
         <p class="text-3xl font-bold mb-4">₹999/mo</p>
         <ul class="mb-6 space-y-2">
@@ -81,7 +98,7 @@
       </div>
 
       <!-- Premium Plan -->
-      <div class="border p-6 rounded-lg shadow dark:border-gray-600">
+      <div class="border p-6 rounded-lg shadow dark:border-gray-600 bg-green-50 dark:bg-gray-800">
         <h2 class="text-2xl font-semibold mb-4">Premium</h2>
         <p class="text-3xl font-bold mb-4">₹1999/mo</p>
         <ul class="mb-6 space-y-2">
@@ -99,7 +116,7 @@
     <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
   </footer>
 
-  <!-- Theme Toggle Script -->
+  <!-- Scripts -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -110,12 +127,12 @@
     function setTheme(theme) {
       if (theme === "dark") {
         html.classList.add("dark");
-        toggleIcon.classList.remove("fa-sun");
-        toggleIcon.classList.add("fa-moon");
-      } else {
-        html.classList.remove("dark");
         toggleIcon.classList.remove("fa-moon");
         toggleIcon.classList.add("fa-sun");
+      } else {
+        html.classList.remove("dark");
+        toggleIcon.classList.remove("fa-sun");
+        toggleIcon.classList.add("fa-moon");
       }
       localStorage.setItem("theme", theme);
     }
@@ -129,6 +146,49 @@
       const isDark = html.classList.contains("dark");
       setTheme(isDark ? "light" : "dark");
     });
+
+    // Auth Role Logic
+    const authSection = document.getElementById("auth-section");
+    const role = localStorage.getItem("role") || "guest";
+    const capitalRole = role.charAt(0).toUpperCase() + role.slice(1);
+
+    const roleStyles = {
+      guest: 'bg-yellow-100 text-yellow-800',
+      admin: 'bg-red-100 text-red-800',
+      customer: 'bg-green-100 text-green-800'
+    };
+
+    let roleDisplay = document.createElement("span");
+    roleDisplay.className = "text-sm text-gray-700 dark:text-gray-300 font-medium flex items-center gap-1";
+    roleDisplay.innerHTML = `You are: <span class="px-2 py-0.5 rounded ${roleStyles[role]} font-semibold">${capitalRole}</span>`;
+
+    let buttons = document.createElement("div");
+    buttons.className = "flex space-x-2";
+
+    if (role === "guest") {
+      buttons.innerHTML = `
+        <a href="login.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Login</a>
+        <a href="register.html" class="px-3 py-1 text-sm bg-gray-300 text-gray-900 rounded hover:bg-gray-400">Register</a>
+      `;
+    } else if (role === "admin") {
+      buttons.innerHTML = `
+        <a href="admin-dashboard.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
+        <button onclick="logout()" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
+      `;
+    } else if (role === "customer") {
+      buttons.innerHTML = `
+        <a href="customer-dashboard.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
+        <button onclick="logout()" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
+      `;
+    }
+
+    authSection.appendChild(roleDisplay);
+    authSection.appendChild(buttons);
+
+    function logout() {
+      localStorage.setItem("role", "guest");
+      window.location.href = "login.html";
+    }
   </script>
 </body>
 </html>

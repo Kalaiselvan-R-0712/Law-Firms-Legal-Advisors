@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Neethify</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    html, body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+        <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+      </a>
+
+      <!-- Social Icons -->
+      <div class="hidden md:flex space-x-3 text-lg">
+        <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="ml-4 text-xl">
+        <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Login Section -->
+  <main class="pt-32 pb-16 px-4 max-w-md mx-auto">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 space-y-6">
+      <h1 class="text-2xl font-bold text-center">Welcome to Neethify</h1>
+
+      <!-- Role Toggle -->
+      <div class="flex justify-center">
+        <div class="inline-flex rounded-full bg-gray-200 dark:bg-gray-700 p-1">
+          <button id="customerBtn" class="role-tab px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white transition">Customer</button>
+          <button id="adminBtn" class="role-tab px-4 py-1.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 transition">Admin</button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <form id="loginForm" class="mt-6 space-y-4">
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+          <input type="password" id="password" name="password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+        <div class="flex items-center justify-between text-sm">
+          <label class="flex items-center">
+            <input type="checkbox" class="mr-2" />
+            Remember me
+          </label>
+          <button type="button" onclick="showForgotPassword()" class="text-blue-600 hover:underline">Forgot password?</button>
+        </div>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">Login</button>
+      </form>
+
+      <!-- Forgot Password Form -->
+      <div id="forgotPasswordSection" class="hidden mt-6 space-y-4">
+        <h2 class="text-lg font-semibold text-center">Reset Your Password</h2>
+        <p class="text-sm text-gray-600 dark:text-gray-400 text-center">Enter your email to receive password reset instructions.</p>
+        <div>
+          <label for="resetEmail" class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" id="resetEmail" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+        <button onclick="sendResetInstructions()" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded font-semibold">Send Reset Link</button>
+        <div class="text-center">
+          <button onclick="backToLogin()" class="text-blue-600 hover:underline text-sm">← Back to Login</button>
+        </div>
+      </div>
+
+      <!-- Continue as Guest -->
+      <div class="text-center mt-4">
+        <button onclick="continueAsGuest()" class="text-blue-600 hover:underline text-sm">Continue as Guest</button>
+      </div>
+
+      <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+        Don’t have an account?
+        <a href="register.html" class="text-blue-600 hover:underline">Register here</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const toggleIcon = document.getElementById("toggle-icon");
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        html.classList.add("dark");
+        toggleIcon.classList.replace("fa-moon", "fa-sun");
+      } else {
+        html.classList.remove("dark");
+        toggleIcon.classList.replace("fa-sun", "fa-moon");
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const isDark = html.classList.contains("dark");
+      setTheme(isDark ? "light" : "dark");
+    });
+
+    // Role toggle logic
+    let currentRole = "customer";
+    const customerBtn = document.getElementById("customerBtn");
+    const adminBtn = document.getElementById("adminBtn");
+
+    customerBtn.addEventListener("click", () => {
+      currentRole = "customer";
+      customerBtn.classList.add("bg-blue-600", "text-white");
+      adminBtn.classList.remove("bg-blue-600", "text-white");
+      adminBtn.classList.add("text-gray-700", "dark:text-gray-300");
+    });
+
+    adminBtn.addEventListener("click", () => {
+      currentRole = "admin";
+      adminBtn.classList.add("bg-blue-600", "text-white");
+      customerBtn.classList.remove("bg-blue-600", "text-white");
+      customerBtn.classList.add("text-gray-700", "dark:text-gray-300");
+    });
+
+    // Simulated login redirect
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      localStorage.setItem("role", currentRole);
+      if (currentRole === "admin") {
+        window.location.href = "admin-dashboard.html";
+      } else {
+        window.location.href = "customer-dashboard.html";
+      }
+    });
+
+    function continueAsGuest() {
+      localStorage.setItem("role", "guest");
+      window.location.href = "index.html";
+    }
+
+    function showForgotPassword() {
+      document.getElementById("loginForm").classList.add("hidden");
+      document.getElementById("forgotPasswordSection").classList.remove("hidden");
+    }
+
+    function backToLogin() {
+      document.getElementById("forgotPasswordSection").classList.add("hidden");
+      document.getElementById("loginForm").classList.remove("hidden");
+    }
+
+    function sendResetInstructions() {
+      const email = document.getElementById("resetEmail").value;
+      if (email) {
+        alert(`A password reset link has been sent to ${email}`);
+        backToLogin();
+      } else {
+        alert("Please enter your email address.");
+      }
+    }
+  </script>
+</body>
+</html>

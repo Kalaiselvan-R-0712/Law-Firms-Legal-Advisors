@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Neethify</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    html, body {
+      transition: background-color 0.3s, color 0.3s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center space-x-2">
+        <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+        <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+      </a>
+
+      <!-- Social Icons -->
+      <div class="hidden md:flex space-x-3 text-lg">
+        <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+
+      <!-- Theme Toggle -->
+      <button id="theme-toggle" class="ml-4 text-xl">
+        <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Register Section -->
+  <main class="pt-32 pb-16 px-4 max-w-md mx-auto">
+    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 space-y-6">
+      <h1 class="text-2xl font-bold text-center mb-4">Create Your Neethify Account</h1>
+
+      <form id="registerForm">
+        <div class="mb-4">
+          <label for="name" class="block text-sm font-semibold mb-1">Full Name</label>
+          <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-semibold mb-1">Email</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-semibold mb-1">Password</label>
+          <input type="password" id="password" name="password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+
+        <div class="mb-6">
+          <label for="confirm-password" class="block text-sm font-semibold mb-1">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+        </div>
+
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">Register</button>
+      </form>
+
+      <!-- Continue as Guest -->
+      <div class="text-center mt-4">
+        <button onclick="continueAsGuest()" class="text-blue-600 hover:underline text-sm">
+          Continue as Guest
+        </button>
+      </div>
+
+      <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+        Already have an account?
+        <a href="login.html" class="text-blue-600 hover:underline">Login here</a>.
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const html = document.documentElement;
+    const toggleBtn = document.getElementById("theme-toggle");
+    const toggleIcon = document.getElementById("toggle-icon");
+
+    function setTheme(theme) {
+      if (theme === "dark") {
+        html.classList.add("dark");
+        toggleIcon.classList.remove("fa-moon");
+        toggleIcon.classList.add("fa-sun");
+      } else {
+        html.classList.remove("dark");
+        toggleIcon.classList.remove("fa-sun");
+        toggleIcon.classList.add("fa-moon");
+      }
+      localStorage.setItem("theme", theme);
+    }
+
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
+    setTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+      const isDark = html.classList.contains("dark");
+      setTheme(isDark ? "light" : "dark");
+    });
+
+    function continueAsGuest() {
+      localStorage.setItem("role", "guest");
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("registerForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Registration simulated. Redirecting to login.");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>

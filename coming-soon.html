@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Neethify | The Law Firm And Legal Advisor</title>
+  <title>Coming Soon | Neethify</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -25,19 +25,13 @@
   <!-- Header -->
   <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Left section: Logo + Role/Buttons -->
       <div class="flex items-center space-x-8">
-        <!-- Logo -->
         <a href="index.html" class="flex items-center space-x-2">
           <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
           <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
         </a>
-
-        <!-- Auth Info (injected by JS) -->
         <div id="auth-section" class="flex items-center space-x-4"></div>
       </div>
-
-      <!-- Navigation -->
       <div class="flex items-center space-x-6">
         <nav class="hidden md:flex space-x-4">
           <a href="index.html" class="hover:text-blue-600">Home</a>
@@ -45,21 +39,17 @@
           <a href="services.html" class="hover:text-blue-600">Services</a>
           <a href="faq.html" class="hover:text-blue-600">FAQ</a>
           <a href="blog.html" class="hover:text-blue-600">Blog</a>
-          <a href="contact.html" class="text-blue-600 font-semibold">Contact</a>
+          <a href="contact.html" class="hover:text-blue-600">Contact</a>
           <a href="404.html" class="hover:text-blue-600">Guides</a>
-          <a href="coming-soon.html" class="hover:text-blue-600">NeethiAI</a>
+          <a href="coming-soon.html" class="text-blue-600 font-semibold">NeethiAI</a>
           <a href="buy.html" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-blue-700">Buy Now</a>
         </nav>
-
-        <!-- Social Icons -->
         <div class="hidden md:flex space-x-3 text-lg">
           <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
           <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
           <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
           <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
         </div>
-
-        <!-- Theme Toggle -->
         <button id="theme-toggle" class="ml-4 text-xl">
           <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
         </button>
@@ -68,64 +58,55 @@
   </header>
 
   <!-- Main Section -->
-  <main class="pt-28 pb-16 px-4 max-w-7xl mx-auto">
-    <h1 class="text-4xl font-bold mb-8 text-center">Contact Us</h1>
-    <p class="text-center mb-12 text-gray-600 dark:text-gray-300">We’d love to hear from you. Reach out with any questions, comments or legal concerns.</p>
+  <main class="min-h-screen flex items-center justify-center px-4 pt-32 pb-12">
+    <div class="text-center max-w-xl mx-auto">
+      <i class="fas fa-scale-balanced text-5xl text-blue-600 mb-6"></i>
+      <h1 class="text-4xl font-bold mb-2">NeethiAI is Coming Soon</h1>
+      <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">NeethiAI is an intelligent assistant that guides you through everything about Neethify <br> and helps you access its features with ease.</p>
+      <p class="text-gray-600 dark:text-gray-300 text-sm mb-6">We’re working hard to launch something amazing. Stay tuned!</p>
 
-    <!-- Contact Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <!-- Contact Info + Map -->
-      <div class="space-y-6">
-        <div class="space-y-2">
-          <h2 class="text-2xl font-semibold">Contact Info</h2>
-          <p><i class="fas fa-map-marker-alt mr-2 text-blue-600"></i> 123 Justice Lane, Legal City, IN 600001</p>
-          <p><i class="fas fa-envelope mr-2 text-blue-600"></i> support@neethify.com</p>
-          <p><i class="fas fa-phone mr-2 text-blue-600"></i> +91 98765 43210</p>
-        </div>
-
-        <!-- Map -->
-        <iframe class="w-full h-64 rounded-lg" loading="lazy"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.245971961474!2d79.85547247491994!3d10.768452189389408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0067d5e0eb3cd3%3A0x9c74cf1762fd38e0!2sTamil%20Nadu%20Law%20University!5e0!3m2!1sen!2sin!4v1721128965107!5m2!1sen!2sin"
-          allowfullscreen="" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <!-- Countdown Timer -->
+      <div id="countdown" class="grid grid-cols-4 gap-4 justify-center text-center my-8">
+        <div><div class="text-3xl font-bold" id="days">00</div><div class="text-sm">Days</div></div>
+        <div><div class="text-3xl font-bold" id="hours">00</div><div class="text-sm">Hours</div></div>
+        <div><div class="text-3xl font-bold" id="minutes">00</div><div class="text-sm">Minutes</div></div>
+        <div><div class="text-3xl font-bold" id="seconds">00</div><div class="text-sm">Seconds</div></div>
       </div>
-
-      <!-- Contact Form -->
-      <form class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-6">
-        <div>
-          <label for="name" class="block font-semibold mb-1">Your Name</label>
-          <input type="text" id="name" name="name" required
-            class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
-        </div>
-        <div>
-          <label for="email" class="block font-semibold mb-1">Your Email</label>
-          <input type="email" id="email" name="email" required
-            class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
-        </div>
-        <div>
-          <label for="subject" class="block font-semibold mb-1">Subject</label>
-          <input type="text" id="subject" name="subject" required
-            class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
-        </div>
-        <div>
-          <label for="message" class="block font-semibold mb-1">Message</label>
-          <textarea id="message" name="message" rows="5" required
-            class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
-        </div>
-        <button type="submit"
-          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-semibold">Send Message</button>
-      </form>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
     <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
   </footer>
 
   <!-- Scripts -->
   <script>
+    // Countdown Timer
+    const target = new Date();
+    target.setDate(target.getDate() + 30);
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = target - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // Footer Year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Theme Toggle
     const html = document.documentElement;
     const toggleBtn = document.getElementById("theme-toggle");
     const toggleIcon = document.getElementById("toggle-icon");
