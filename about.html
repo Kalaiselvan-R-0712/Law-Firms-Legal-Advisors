@@ -17,6 +17,15 @@
   <style>
     html, body {
       transition: background-color 0.3s, color 0.3s;
+      background: url('https://images.pexels.com/photos/5669619/pexels-photo-5669619.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(2px);
+    }
+    .dark .overlay {
+      background-color: rgba(17, 24, 39, 0.8); /* dark:bg-gray-900 */
     }
   </style>
 </head>
@@ -74,61 +83,69 @@
       </div>
     </div>
   </header>
+  
+  <!-- Page Content Overlay -->
+  <div class="overlay min-h-screen">
 
-  <!-- About Section -->
-  <section class="pt-28 pb-20 px-4 max-w-5xl mx-auto">
-    <h1 class="text-4xl font-bold mb-6 text-center">About Neethify</h1>
-    <p class="text-lg mb-8 text-center max-w-3xl mx-auto">
-      Neethify is a modern law firm dedicated to providing transparent, efficient, and client-focused legal solutions. Our mission is to uphold justice with unwavering integrity.
-    </p>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      <div>
-        <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
-        <p class="mb-4">
-          At Neethify, our mission is to empower individuals and businesses through accessible and reliable legal services. We believe every person deserves fair representation.
-        </p>
-        <p>
-          From civil cases to corporate matters, we combine technology with tradition to deliver results our clients can trust.
-        </p>
-      </div>
-      <div>
-        <h2 class="text-2xl font-semibold mb-4">Our Values</h2>
-        <ul class="list-disc pl-5 space-y-2">
-          <li>Client-Centric Approach</li>
-          <li>Transparency & Honesty</li>
-          <li>Excellence in Legal Practice</li>
-          <li>Social Responsibility</li>
-        </ul>
-      </div>
-    </div>
+    <!-- Header -->
+    <!-- [Unchanged Header Code Here] -->
+    <!-- Keep your entire header block here as-is -->
 
-    <div class="mt-12">
-      <h2 class="text-2xl font-semibold mb-4">Meet Our Team</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center">
-          <img src="https://i.pravatar.cc/150?img=5" alt="Founder" class="w-24 h-24 mx-auto rounded-full mb-4">
-          <h3 class="font-bold text-lg">Adv. Maria</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Founder & Chief Legal Strategist</p>
+    <!-- About Section -->
+    <section class="pt-28 pb-20 px-4 max-w-5xl mx-auto">
+      <h1 class="text-4xl font-bold mb-6 text-center">About Neethify</h1>
+      <p class="text-lg mb-8 text-center max-w-3xl mx-auto">
+        Neethify is a modern law firm dedicated to providing transparent, efficient, and client-focused legal solutions. Our mission is to uphold justice with unwavering integrity.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Our Mission</h2>
+          <p class="mb-4">
+            At Neethify, our mission is to empower individuals and businesses through accessible and reliable legal services. We believe every person deserves fair representation.
+          </p>
+          <p>
+            From civil cases to corporate matters, we combine technology with tradition to deliver results our clients can trust.
+          </p>
         </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center">
-          <img src="https://i.pravatar.cc/150?img=12" alt="Partner" class="w-24 h-24 mx-auto rounded-full mb-4">
-          <h3 class="font-bold text-lg">Adv. Thomas</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Senior Partner - Criminal Law</p>
-        </div>
-        <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center">
-          <img src="https://i.pravatar.cc/150?img=32" alt="Partner" class="w-24 h-24 mx-auto rounded-full mb-4">
-          <h3 class="font-bold text-lg">Adv. Catherine</h3>
-          <p class="text-sm text-gray-600 dark:text-gray-300">Head - Corporate Affairs</p>
+        <div>
+          <h2 class="text-2xl font-semibold mb-4">Our Values</h2>
+          <ul class="list-disc pl-5 space-y-2">
+            <li>Client-Centric Approach</li>
+            <li>Transparency & Honesty</li>
+            <li>Excellence in Legal Practice</li>
+            <li>Social Responsibility</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
-    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
-  </footer>
+      <div class="mt-12">
+        <h2 class="text-2xl font-semibold mb-4">Meet Our Team</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center">
+            <img src="https://i.pravatar.cc/150?img=5" alt="Founder" class="w-24 h-24 mx-auto rounded-full mb-4">
+            <h3 class="font-bold text-lg">Adv. Maria</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Founder & Chief Legal Strategist</p>
+          </div>
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center">
+            <img src="https://i.pravatar.cc/150?img=12" alt="Partner" class="w-24 h-24 mx-auto rounded-full mb-4">
+            <h3 class="font-bold text-lg">Adv. Thomas</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Senior Partner - Criminal Law</p>
+          </div>
+          <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow text-center">
+            <img src="https://i.pravatar.cc/150?img=32" alt="Partner" class="w-24 h-24 mx-auto rounded-full mb-4">
+            <h3 class="font-bold text-lg">Adv. Catherine</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300">Head - Corporate Affairs</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 transition-colors duration-300">
+      <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+    </footer>
+  </div>
 
   <!-- Scripts -->
   <script>
@@ -156,10 +173,12 @@
     const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
     setTheme(initialTheme);
 
-    toggleBtn.addEventListener("click", () => {
-      const isDark = html.classList.contains("dark");
-      setTheme(isDark ? "light" : "dark");
-    });
+    if (toggleBtn) {
+      toggleBtn.addEventListener("click", () => {
+        const isDark = html.classList.contains("dark");
+        setTheme(isDark ? "light" : "dark");
+      });
+    }
 
     // Auth Role Logic
     const authSection = document.getElementById("auth-section");
@@ -196,8 +215,8 @@
       `;
     }
 
-    authSection.appendChild(roleDisplay);
-    authSection.appendChild(buttons);
+    authSection?.appendChild(roleDisplay);
+    authSection?.appendChild(buttons);
 
     function logout() {
       localStorage.setItem("role", "guest");

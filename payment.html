@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment | Neethify</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
+
+  <!-- Header -->
+  <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <!-- Left: Logo -->
+      <div class="flex items-center space-x-8">
+        <a href="index.html" class="flex items-center space-x-2">
+          <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
+          <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
+        </a>
+        <div id="auth-section" class="flex items-center space-x-4"></div>
+      </div>
+
+      <!-- Right: Navigation -->
+      <div class="flex items-center space-x-6">
+        <nav class="hidden md:flex space-x-4">
+          <a href="index.html" class="hover:text-blue-600">Home</a>
+          <a href="about.html" class="hover:text-blue-600">About</a>
+          <a href="services.html" class="hover:text-blue-600">Services</a>
+          <a href="faq.html" class="hover:text-blue-600">FAQ</a>
+          <a href="blog.html" class="hover:text-blue-600">Blog</a>
+          <a href="contact.html" class="hover:text-blue-600">Contact</a>
+          <a href="404.html" class="hover:text-blue-600">Guides</a>
+          <a href="coming-soon.html" class="hover:text-blue-600">NeethiAI</a>
+          <a href="buy.html" class="text-white bg-blue-600 px-4 py-2 rounded hover:bg-yellow-400">Buy Now</a>
+        </nav>
+
+        <!-- Social Icons -->
+        <div class="hidden md:flex space-x-3 text-lg">
+          <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="max-w-xl mx-auto pt-32 px-4 pb-12">
+    <div class="border rounded-lg p-8 shadow-lg dark:border-gray-700 bg-white dark:bg-gray-800">
+      <h2 class="text-2xl font-bold mb-4 text-center">Confirm Your Plan</h2>
+      <p class="text-center text-gray-600 dark:text-gray-300 mb-6">Please review your plan and proceed to payment.</p>
+
+      <div class="mb-6 text-center">
+        <p><strong>Selected Plan:</strong> <span id="selected-plan" class="font-semibold text-blue-600"></span></p>
+        <p><strong>Amount:</strong> ₹<span id="plan-amount" class="font-semibold"></span>/mo</p>
+      </div>
+
+      <button id="pay-btn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-lg">Proceed to Payment</button>
+
+      <div id="confirmation" class="hidden mt-8 p-4 bg-green-100 text-green-800 rounded text-center">
+        ✅ Payment Successful! You will receive a confirmation email shortly.<br>
+        Redirecting to your dashboard...
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300 mt-auto">
+    <p>&copy; <span id="year"></span> Neethify. All rights reserved.</p>
+  </footer>
+
+  <!-- Script -->
+  <script>
+    const plan = localStorage.getItem("selectedPlan") || "Standard";
+    const role = localStorage.getItem("role") || "guest";
+
+    document.getElementById("selected-plan").textContent = plan;
+    const amount = plan.toLowerCase() === "premium" ? "1999" : "999";
+    document.getElementById("plan-amount").textContent = amount;
+
+    document.getElementById("pay-btn").addEventListener("click", () => {
+      if (role !== "admin" && role !== "customer") {
+        alert("Only registered users (Admin or Customer) can proceed with payment.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("pay-btn").disabled = true;
+      document.getElementById("pay-btn").textContent = "Processing...";
+
+      setTimeout(() => {
+        document.getElementById("confirmation").classList.remove("hidden");
+
+        setTimeout(() => {
+          const redirectPage = role === "admin" ? "admin-dashboard.html" : "customer-dashboard.html";
+          window.location.href = redirectPage;
+        }, 3000);
+      }, 2000);
+    });
+
+    // Year for footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const icon = document.getElementById("toggle-icon");
+    themeToggle.addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      icon.classList.toggle("fa-moon");
+      icon.classList.toggle("fa-sun");
+    });
+  </script>
+
+  <!-- Font Awesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

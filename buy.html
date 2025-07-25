@@ -82,7 +82,7 @@
           <li>✔️ Basic legal tips</li>
           <li>✔️ Email support</li>
         </ul>
-        <a href="#" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Start Free</a>
+        <button onclick="handleFreePlan()" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Start Free</button>
       </div>
 
       <!-- Standard Plan -->
@@ -94,7 +94,7 @@
           <li>✔️ Document review</li>
           <li>✔️ Priority email support</li>
         </ul>
-        <a href="#" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Choose Plan</a>
+        <button onclick="handlePaidPlan('standard')" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Standard Plan</button>
       </div>
 
       <!-- Premium Plan -->
@@ -106,7 +106,7 @@
           <li>✔️ Legal document drafting</li>
           <li>✔️ Phone and video support</li>
         </ul>
-        <a href="#" class="block bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Choose Premium</a>
+        <button onclick="handlePaidPlan('premium')" class="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center px-4 py-2 rounded">Premium Plan</button>
       </div>
     </div>
   </main>
@@ -188,6 +188,26 @@
     function logout() {
       localStorage.setItem("role", "guest");
       window.location.href = "login.html";
+    }
+
+    function handleFreePlan() {
+      const role = localStorage.getItem("role");
+      if (role === "admin" || role === "customer") {
+        alert("You will receive a confirmation mail shortly.");
+        window.location.href = role === "admin" ? "admin-dashboard.html" : "customer-dashboard.html";
+      } else {
+        alert("Only registered users (Admin or Customer) can access this plan.");
+      }
+    }
+
+    function handlePaidPlan(planType) {
+      const role = localStorage.getItem("role");
+      if (role === "admin" || role === "customer") {
+        localStorage.setItem("selectedPlan", planType);
+        window.location.href = "payment.html";
+      } else {
+        alert("Only registered users (Admin or Customer) can access this plan.");
+      }
     }
   </script>
 </body>
