@@ -32,8 +32,6 @@
           <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
           <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
         </a>
-
-        <!-- Auth Info (injected by JS) -->
         <div id="auth-section" class="flex items-center space-x-4"></div>
       </div>
 
@@ -67,14 +65,13 @@
     </div>
   </header>
 
-  <!-- Main Section -->
+  <!-- Main -->
   <main class="pt-28 pb-16 px-4 max-w-7xl mx-auto">
     <h1 class="text-4xl font-bold mb-8 text-center">Contact Us</h1>
     <p class="text-center mb-12 text-gray-600 dark:text-gray-300">We’d love to hear from you. Reach out with any questions, comments or legal concerns.</p>
 
-    <!-- Contact Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <!-- Contact Info + Map -->
+      <!-- Info + Map -->
       <div class="space-y-6">
         <div class="space-y-2">
           <h2 class="text-2xl font-semibold">Contact Info</h2>
@@ -90,7 +87,7 @@
       </div>
 
       <!-- Contact Form -->
-      <form class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-6">
+      <form id="contact-form" class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow space-y-6">
         <div>
           <label for="name" class="block font-semibold mb-1">Your Name</label>
           <input type="text" id="name" name="name" required
@@ -110,6 +107,9 @@
           <label for="message" class="block font-semibold mb-1">Message</label>
           <textarea id="message" name="message" rows="5" required
             class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+        </div>
+        <div id="form-success" class="hidden text-green-600 font-semibold text-center">
+          Your message has successfully sent!
         </div>
         <button type="submit"
           class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded font-semibold">Send Message</button>
@@ -145,19 +145,17 @@
 
     const storedTheme = localStorage.getItem("theme");
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
+    setTheme(storedTheme || (prefersDark ? "dark" : "light"));
 
     toggleBtn.addEventListener("click", () => {
       const isDark = html.classList.contains("dark");
       setTheme(isDark ? "light" : "dark");
     });
 
-    // Auth Role Logic
+    // Role Auth Section
     const authSection = document.getElementById("auth-section");
     const role = localStorage.getItem("role") || "guest";
     const capitalRole = role.charAt(0).toUpperCase() + role.slice(1);
-
     const roleStyles = {
       guest: 'bg-yellow-100 text-yellow-800',
       admin: 'bg-red-100 text-red-800',
@@ -176,14 +174,10 @@
         <a href="login.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Login</a>
         <a href="register.html" class="px-3 py-1 text-sm bg-gray-300 text-gray-900 rounded hover:bg-gray-400">Register</a>
       `;
-    } else if (role === "admin") {
+    } else {
+      const dashLink = role === "admin" ? "admin-dashboard.html" : "customer-dashboard.html";
       buttons.innerHTML = `
-        <a href="admin-dashboard.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
-        <button onclick="logout()" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
-      `;
-    } else if (role === "customer") {
-      buttons.innerHTML = `
-        <a href="customer-dashboard.html" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
+        <a href="${dashLink}" class="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">Dashboard</a>
         <button onclick="logout()" class="px-3 py-1 text-sm bg-red-500 text-white rounded hover:bg-red-600">Logout</button>
       `;
     }
@@ -195,6 +189,16 @@
       localStorage.setItem("role", "guest");
       window.location.href = "login.html";
     }
+
+    // Contact form success message
+    document.getElementById("contact-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      document.getElementById("form-success").classList.remove("hidden");
+      this.reset();
+      setTimeout(() => {
+        document.getElementById("form-success").classList.add("hidden");
+      }, 4000);
+    });
   </script>
 </body>
 </html>

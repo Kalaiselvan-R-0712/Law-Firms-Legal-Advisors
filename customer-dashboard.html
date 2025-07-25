@@ -32,6 +32,19 @@
   <main class="max-w-6xl mx-auto px-4 py-10">
     <h2 class="text-2xl font-bold mb-6">Welcome, valued Customer!</h2>
 
+    <!-- User Info -->
+    <div class="bg-white dark:bg-gray-800 p-6 rounded shadow mb-10">
+      <h3 class="text-lg font-semibold mb-4">Your Details</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-700 dark:text-gray-300">
+        <p><strong>Full Name:</strong> <span id="fullName"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="dob"></span></p>
+        <p><strong>Marital Status:</strong> <span id="maritalStatus"></span></p>
+        <p><strong>Gender:</strong> <span id="gender"></span></p>
+        <p><strong>Role:</strong> <span id="role"></span></p>
+      </div>
+    </div>
+
     <!-- Quick Access Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
       <div class="bg-white dark:bg-gray-800 p-6 rounded shadow hover:shadow-md transition">
@@ -58,11 +71,12 @@
     </section>
   </main>
 
-    <div class="bg-transparent py-3 text-center text-sm text-gray-700 dark:text-gray-300">
-        <a href="index.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-semibold transition">
-            ← Go to Neethify Homepage
-        </a>
-    </div>
+  <!-- Homepage Link -->
+  <div class="bg-transparent py-3 text-center text-sm text-gray-700 dark:text-gray-300">
+    <a href="index.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 font-semibold transition">
+      ← Go to Neethify Homepage
+    </a>
+  </div>
 
   <!-- Footer -->
   <footer class="bg-gray-100 dark:bg-gray-800 text-center py-6 text-sm text-gray-600 dark:text-gray-300">
@@ -72,6 +86,7 @@
   <!-- Scripts -->
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
     const html = document.documentElement;
     const toggleBtn = document.getElementById("theme-toggle");
     const toggleIcon = document.getElementById("toggle-icon");
@@ -98,6 +113,17 @@
       const isDark = html.classList.contains("dark");
       setTheme(isDark ? "light" : "dark");
     });
+
+    // Load customer user details
+    const user = JSON.parse(localStorage.getItem("currentUser")) || JSON.parse(localStorage.getItem("loggedInUser"));
+    if (user && user.role === "customer") {
+      document.getElementById("fullName").textContent = user.fullName ?? "N/A";
+      document.getElementById("email").textContent = user.email ?? "N/A";
+      document.getElementById("dob").textContent = user.dob ?? "N/A";
+      document.getElementById("maritalStatus").textContent = user.maritalStatus ?? "N/A";
+      document.getElementById("gender").textContent = user.gender ?? "N/A";
+      document.getElementById("role").textContent = user.role ?? "N/A";
+    }
   </script>
 </body>
 </html>

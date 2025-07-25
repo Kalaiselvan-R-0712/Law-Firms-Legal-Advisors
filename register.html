@@ -7,19 +7,14 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class'
-    };
-  </script>
+  <script>tailwind.config = { darkMode: 'class' };</script>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
 
   <style>
-    html, body {
-      transition: background-color 0.3s, color 0.3s;
-    }
+    html, body { transition: background-color 0.3s, color 0.3s; }
+    select:invalid { color: gray; }
   </style>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
@@ -27,64 +22,96 @@
   <!-- Header -->
   <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 cursor-default">
         <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
         <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
-      </a>
-
-      <!-- Social Icons -->
-      <div class="hidden md:flex space-x-3 text-lg">
-        <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       </div>
-
-      <!-- Theme Toggle -->
-      <button id="theme-toggle" class="ml-4 text-xl">
-        <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
-      </button>
+      <div class="flex items-center space-x-3 text-lg">
+        <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas text-gray-800 dark:text-white"></i>
+        </button>
+      </div>
     </div>
   </header>
 
   <!-- Register Section -->
-  <main class="pt-32 pb-16 px-4 max-w-md mx-auto">
-    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 space-y-6">
-      <h1 class="text-2xl font-bold text-center mb-4">Create Your Neethify Account</h1>
+  <main class="pt-32 pb-16 px-4">
+    <div class="mx-auto w-[75%] bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+      <h1 class="text-2xl font-bold text-center mb-6">Create Your Neethify Account</h1>
+      <form id="registerForm" class="grid md:grid-cols-2 gap-6">
 
-      <form id="registerForm">
-        <div class="mb-4">
+        <div>
           <label for="name" class="block text-sm font-semibold mb-1">Full Name</label>
-          <input type="text" id="name" name="name" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+          <input type="text" id="name" name="name" required class="capitalize w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
         </div>
 
-        <div class="mb-4">
+        <div>
           <label for="email" class="block text-sm font-semibold mb-1">Email</label>
           <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
         </div>
 
-        <div class="mb-4">
+        <div>
           <label for="password" class="block text-sm font-semibold mb-1">Password</label>
           <input type="password" id="password" name="password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+          <p id="passwordHelp" class="text-xs text-red-500 mt-1"></p>
         </div>
 
-        <div class="mb-6">
+        <div>
           <label for="confirm-password" class="block text-sm font-semibold mb-1">Confirm Password</label>
           <input type="password" id="confirm-password" name="confirm-password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+          <p id="confirmHelp" class="text-xs text-red-500 mt-1"></p>
         </div>
 
-        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">Register</button>
+        <div>
+          <label for="dob" class="block text-sm font-semibold mb-1">Date of Birth</label>
+          <input type="date" id="dob" name="dob" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+          <p id="dobHelp" class="text-xs text-red-500 mt-1"></p>
+        </div>
+
+        <div>
+          <label for="marital" class="block text-sm font-semibold mb-1">Marital Status</label>
+          <select id="marital" name="marital" required class="capitalize w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <option value="" disabled selected>Select Status</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
+            <option value="Widowed">Widowed</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="gender" class="block text-sm font-semibold mb-1">Gender</label>
+          <select id="gender" name="gender" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="role" class="block text-sm font-semibold mb-1">Role</label>
+          <select id="role" name="role" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <option value="" disabled selected>Select Role</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+          </select>
+        </div>
+
+        <div class="md:col-span-2">
+          <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">Register</button>
+        </div>
       </form>
 
-      <!-- Continue as Guest -->
-      <div class="text-center mt-4">
-        <button onclick="continueAsGuest()" class="text-blue-600 hover:underline text-sm">
-          Continue as Guest
-        </button>
+      <div class="text-center mt-6">
+        <button onclick="continueAsGuest()" class="text-blue-600 hover:underline text-sm">Continue as Guest</button>
       </div>
 
-      <p class="text-center text-sm text-gray-600 dark:text-gray-400">
+      <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-2">
         Already have an account?
         <a href="login.html" class="text-blue-600 hover:underline">Login here</a>.
       </p>
@@ -104,37 +131,89 @@
     const toggleBtn = document.getElementById("theme-toggle");
     const toggleIcon = document.getElementById("toggle-icon");
 
-    function setTheme(theme) {
-      if (theme === "dark") {
-        html.classList.add("dark");
+    function setIconBasedOnTheme() {
+      if (html.classList.contains("dark")) {
         toggleIcon.classList.remove("fa-moon");
         toggleIcon.classList.add("fa-sun");
       } else {
-        html.classList.remove("dark");
         toggleIcon.classList.remove("fa-sun");
         toggleIcon.classList.add("fa-moon");
       }
-      localStorage.setItem("theme", theme);
     }
 
-    const storedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
-
     toggleBtn.addEventListener("click", () => {
-      const isDark = html.classList.contains("dark");
-      setTheme(isDark ? "light" : "dark");
+      html.classList.toggle("dark");
+      const newTheme = html.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      setIconBasedOnTheme();
     });
+
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      html.classList.add("dark");
+    } else {
+      html.classList.remove("dark");
+    }
+    setIconBasedOnTheme();
 
     function continueAsGuest() {
       localStorage.setItem("role", "guest");
       window.location.href = "index.html";
     }
 
+    const passwordField = document.getElementById("password");
+    const confirmField = document.getElementById("confirm-password");
+    const passwordHelp = document.getElementById("passwordHelp");
+    const confirmHelp = document.getElementById("confirmHelp");
+
+    passwordField.addEventListener("input", () => {
+      const pwd = passwordField.value;
+      const valid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pwd);
+      passwordHelp.textContent = valid ? "" : "Password must be at least 8 characters, include uppercase, lowercase, number, and special symbol.";
+    });
+
+    confirmField.addEventListener("input", () => {
+      confirmHelp.textContent = passwordField.value !== confirmField.value ? "Passwords must be same" : "";
+    });
+
+    document.getElementById("dob").addEventListener("change", () => {
+      const dob = new Date(document.getElementById("dob").value);
+      const age = new Date().getFullYear() - dob.getFullYear();
+      document.getElementById("dobHelp").textContent = age < 18 ? "You must be at least 18 years old to register." : "";
+    });
+
     document.getElementById("registerForm").addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Registration simulated. Redirecting to login.");
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+      const dob = document.getElementById("dob").value;
+      const marital = document.getElementById("marital").value;
+      const gender = document.getElementById("gender").value;
+      const role = document.getElementById("role").value;
+
+      const dobDate = new Date(dob);
+      const age = new Date().getFullYear() - dobDate.getFullYear();
+      if (age < 18) return alert("You must be at least 18 years old to register.");
+      if (password !== confirmPassword) return alert("Passwords must be same");
+
+      const user = {
+        fullName: name,
+        email,
+        password,
+        dob,
+        maritalStatus: marital,
+        gender,
+        role
+      };
+
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      users.push(user);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Registration successful. Redirecting to login.");
       window.location.href = "login.html";
     });
   </script>

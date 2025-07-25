@@ -7,9 +7,7 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
+  <script> tailwind.config = { darkMode: 'class' };</script>
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
@@ -25,23 +23,19 @@
   <!-- Header -->
   <header class="fixed w-full bg-white dark:bg-gray-800 shadow z-50 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="index.html" class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 cursor-default">
         <i class="fas fa-scale-balanced text-2xl text-blue-600"></i>
         <span class="text-2xl font-bold text-gray-800 dark:text-white">Neethify</span>
-      </a>
-
-      <!-- Social Icons -->
-      <div class="hidden md:flex space-x-3 text-lg">
+      </div>
+      <div class="flex items-center space-x-3 text-lg">
         <a href="https://www.facebook.com/login" target="_blank" class="text-blue-600 hover:text-blue-800"><i class="fab fa-facebook-f"></i></a>
         <a href="https://twitter.com/login" target="_blank" class="text-blue-400 hover:text-blue-600"><i class="fab fa-twitter"></i></a>
         <a href="https://www.instagram.com/accounts/login/" target="_blank" class="text-pink-500 hover:text-pink-700"><i class="fab fa-instagram"></i></a>
         <a href="https://www.linkedin.com/login" target="_blank" class="text-blue-700 hover:text-blue-900"><i class="fab fa-linkedin-in"></i></a>
+        <button id="theme-toggle" class="ml-4 text-xl">
+          <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
+        </button>
       </div>
-
-      <!-- Theme Toggle -->
-      <button id="theme-toggle" class="ml-4 text-xl">
-        <i id="toggle-icon" class="fas fa-moon text-gray-800 dark:text-white"></i>
-      </button>
     </div>
   </header>
 
@@ -53,21 +47,27 @@
       <!-- Role Toggle -->
       <div class="flex justify-center">
         <div class="inline-flex rounded-full bg-gray-200 dark:bg-gray-700 p-1">
-          <button id="customerBtn" class="role-tab px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white transition">Customer</button>
-          <button id="adminBtn" class="role-tab px-4 py-1.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300 transition">Admin</button>
+          <button id="customerBtn" class="px-4 py-1.5 rounded-full text-sm font-medium bg-blue-600 text-white">Customer</button>
+          <button id="adminBtn" class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-700 dark:text-gray-300">Admin</button>
         </div>
       </div>
 
-      <!-- Login Form -->
       <form id="loginForm" class="mt-6 space-y-4">
+        <p id="errorMsg" class="hidden text-red-600 text-sm font-semibold text-center">Email or password is incorrect.</p>
+
         <div>
           <label for="email" class="block text-sm font-semibold mb-1">Email</label>
           <input type="email" id="email" name="email" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
         </div>
-        <div>
+
+        <div class="relative">
           <label for="password" class="block text-sm font-semibold mb-1">Password</label>
-          <input type="password" id="password" name="password" required class="w-full px-4 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+          <input type="password" id="password" name="password" required class="w-full px-4 py-2 border rounded pr-10 dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
+          <button type="button" id="togglePassword" class="absolute right-3 top-9 text-gray-600 dark:text-gray-300">
+            <i class="fas fa-eye"></i>
+          </button>
         </div>
+
         <div class="flex items-center justify-between text-sm">
           <label class="flex items-center">
             <input type="checkbox" class="mr-2" />
@@ -75,10 +75,10 @@
           </label>
           <button type="button" onclick="showForgotPassword()" class="text-blue-600 hover:underline">Forgot password?</button>
         </div>
+
         <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded font-semibold">Login</button>
       </form>
 
-      <!-- Forgot Password Form -->
       <div id="forgotPasswordSection" class="hidden mt-6 space-y-4">
         <h2 class="text-lg font-semibold text-center">Reset Your Password</h2>
         <p class="text-sm text-gray-600 dark:text-gray-400 text-center">Enter your email to receive password reset instructions.</p>
@@ -92,14 +92,12 @@
         </div>
       </div>
 
-      <!-- Continue as Guest -->
-      <div class="text-center mt-4">
+      <div class="text-center mt-6">
         <button onclick="continueAsGuest()" class="text-blue-600 hover:underline text-sm">Continue as Guest</button>
       </div>
 
       <p class="text-center text-sm text-gray-600 dark:text-gray-400">
-        Don’t have an account?
-        <a href="register.html" class="text-blue-600 hover:underline">Register here</a>.
+        Don’t have an account? <a href="register.html" class="text-blue-600 hover:underline">Register here</a>.
       </p>
     </div>
   </main>
@@ -110,88 +108,159 @@
   </footer>
 
   <!-- Scripts -->
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+  <!-- ⬇️ Keep the exact code you've provided UNTIL this part — only replace the <script> block at the bottom -->
 
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById("theme-toggle");
-    const toggleIcon = document.getElementById("toggle-icon");
+<!-- Scripts -->
+<!-- No changes above this line -->
+<!-- Paste this updated <script> block at the bottom of your file as-is -->
+<script>
+  // Year in footer
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-    function setTheme(theme) {
-      if (theme === "dark") {
-        html.classList.add("dark");
-        toggleIcon.classList.replace("fa-moon", "fa-sun");
-      } else {
-        html.classList.remove("dark");
-        toggleIcon.classList.replace("fa-sun", "fa-moon");
-      }
-      localStorage.setItem("theme", theme);
+  // Theme Toggle
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById("theme-toggle");
+  const toggleIcon = document.getElementById("toggle-icon");
+
+  function setTheme(theme) {
+    if (theme === "dark") {
+      html.classList.add("dark");
+      toggleIcon.classList.replace("fa-moon", "fa-sun");
+    } else {
+      html.classList.remove("dark");
+      toggleIcon.classList.replace("fa-sun", "fa-moon");
     }
+    localStorage.setItem("theme", theme);
+  }
 
-    const storedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = storedTheme || (prefersDark ? "dark" : "light");
-    setTheme(initialTheme);
+  setTheme(localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
 
-    toggleBtn.addEventListener("click", () => {
-      const isDark = html.classList.contains("dark");
-      setTheme(isDark ? "light" : "dark");
-    });
+  toggleBtn.addEventListener("click", () => {
+    const isDark = html.classList.contains("dark");
+    setTheme(isDark ? "light" : "dark");
+  });
 
-    // Role toggle logic
-    let currentRole = "customer";
-    const customerBtn = document.getElementById("customerBtn");
-    const adminBtn = document.getElementById("adminBtn");
+  // Role Toggle
+  let currentRole = "customer";
+  const customerBtn = document.getElementById("customerBtn");
+  const adminBtn = document.getElementById("adminBtn");
 
-    customerBtn.addEventListener("click", () => {
-      currentRole = "customer";
+  function switchRole(role) {
+    currentRole = role;
+    localStorage.setItem("selectedRole", role);
+
+    if (role === "customer") {
       customerBtn.classList.add("bg-blue-600", "text-white");
+      customerBtn.classList.remove("text-gray-700", "dark:text-gray-300");
       adminBtn.classList.remove("bg-blue-600", "text-white");
       adminBtn.classList.add("text-gray-700", "dark:text-gray-300");
-    });
-
-    adminBtn.addEventListener("click", () => {
-      currentRole = "admin";
+    } else {
       adminBtn.classList.add("bg-blue-600", "text-white");
+      adminBtn.classList.remove("text-gray-700", "dark:text-gray-300");
       customerBtn.classList.remove("bg-blue-600", "text-white");
       customerBtn.classList.add("text-gray-700", "dark:text-gray-300");
-    });
+    }
+  }
 
-    // Simulated login redirect
-    document.getElementById("loginForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      localStorage.setItem("role", currentRole);
-      if (currentRole === "admin") {
+  // Restore previously selected role if available
+  const savedRole = localStorage.getItem("selectedRole");
+  if (savedRole) switchRole(savedRole);
+  else switchRole("customer");
+
+  customerBtn.addEventListener("click", () => switchRole("customer"));
+  adminBtn.addEventListener("click", () => switchRole("admin"));
+
+  // Password toggle
+  const passwordInput = document.getElementById("password");
+  const togglePasswordBtn = document.getElementById("togglePassword");
+
+  togglePasswordBtn.addEventListener("click", () => {
+    const isPwd = passwordInput.type === "password";
+    passwordInput.type = isPwd ? "text" : "password";
+    togglePasswordBtn.innerHTML = `<i class="fas fa-${isPwd ? "eye-slash" : "eye"}"></i>`;
+  });
+
+  // Login form
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const pwd = document.getElementById("password").value.trim();
+    const errorMsg = document.getElementById("errorMsg");
+    errorMsg.classList.add("hidden");
+
+    const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+    // First check hardcoded admin login
+    if (
+      currentRole === "admin" &&
+      email.toLowerCase() === "admin@example.com" &&
+      pwd === "admin123"
+    ) {
+      const adminUser = {
+        fullName: "Admin",
+        email: email,
+        role: "admin"
+      };
+      localStorage.setItem("role", "admin");
+      localStorage.setItem("loggedInUser", JSON.stringify(adminUser));
+      localStorage.setItem("currentUser", JSON.stringify(adminUser));
+      window.location.href = "admin-dashboard.html";
+      return;
+    }
+
+    const matchedUser = users.find(
+      (u) =>
+        u.email.trim().toLowerCase() === email.toLowerCase() &&
+        u.password === pwd &&
+        u.role.toLowerCase() === currentRole.toLowerCase()
+    );
+
+    if (matchedUser) {
+      localStorage.setItem("role", matchedUser.role);
+      localStorage.setItem("loggedInUser", JSON.stringify(matchedUser));
+      localStorage.setItem("currentUser", JSON.stringify(matchedUser));
+
+      if (matchedUser.role === "admin") {
         window.location.href = "admin-dashboard.html";
-      } else {
+      } else if (matchedUser.role === "customer") {
         window.location.href = "customer-dashboard.html";
-      }
-    });
-
-    function continueAsGuest() {
-      localStorage.setItem("role", "guest");
-      window.location.href = "index.html";
-    }
-
-    function showForgotPassword() {
-      document.getElementById("loginForm").classList.add("hidden");
-      document.getElementById("forgotPasswordSection").classList.remove("hidden");
-    }
-
-    function backToLogin() {
-      document.getElementById("forgotPasswordSection").classList.add("hidden");
-      document.getElementById("loginForm").classList.remove("hidden");
-    }
-
-    function sendResetInstructions() {
-      const email = document.getElementById("resetEmail").value;
-      if (email) {
-        alert(`A password reset link has been sent to ${email}`);
-        backToLogin();
       } else {
-        alert("Please enter your email address.");
+        alert("Unrecognized role.");
       }
+    } else {
+      errorMsg.classList.remove("hidden");
+      alert("Email or password is incorrect, or role mismatch.");
     }
-  </script>
+  });
+
+  // Forgot password
+  function showForgotPassword() {
+    document.getElementById("loginForm").classList.add("hidden");
+    document.getElementById("forgotPasswordSection").classList.remove("hidden");
+  }
+
+  function backToLogin() {
+    document.getElementById("forgotPasswordSection").classList.add("hidden");
+    document.getElementById("loginForm").classList.remove("hidden");
+  }
+
+  function sendResetInstructions() {
+    const resetEmail = document.getElementById("resetEmail").value.trim();
+    if (resetEmail) {
+      alert("Reset link sent to: " + resetEmail);
+    } else {
+      alert("Please enter a valid email.");
+    }
+  }
+
+  // Continue as Guest
+  function continueAsGuest() {
+    localStorage.setItem("role", "guest");
+    localStorage.setItem("loggedInUser", JSON.stringify({ role: "guest" }));
+    localStorage.setItem("currentUser", JSON.stringify({ role: "guest" }));
+    window.location.href = "index.html";
+  }
+</script>
+
 </body>
 </html>
