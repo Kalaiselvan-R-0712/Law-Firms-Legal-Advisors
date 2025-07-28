@@ -19,6 +19,20 @@
       transition: background-color 0.3s, color 0.3s;
     }
   </style>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    body {
+      background-image: url('https://images.pexels.com/photos/5669655/pexels-photo-5669655.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white transition-colors duration-300 font-sans">
 
@@ -66,15 +80,20 @@
       </div>
     </div>
   </header>
-
+  
   <!-- Services Section -->
   <section class="pt-28 pb-20 px-4 max-w-6xl mx-auto bg-cover bg-center bg-no-repeat" style="background-image: url('https://cdn.pixabay.com/photo/2021/01/08/15/52/law-5899790_1280.jpg');">
-    <h1 class="text-4xl font-bold mb-6 text-center">Our Legal Services</h1>
-    <p class="text-lg mb-12 text-center max-w-3xl mx-auto">
-      We provide a broad range of legal services to individuals, startups, and large enterprises with dedication and expertise.
-    </p>
 
-    <div class="grid md:grid-cols-3 gap-8">
+  <!-- Intro Block with Margin Bottom -->
+  <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow mb-10">
+    <h1 class="text-4xl font-bold mb-4 text-center">Our Legal Services</h1>
+    <p class="text-lg mb-3 text-center max-w-3xl mx-auto">
+      We provide a broad range of legal services to individuals, startups, <br> and large enterprises with dedication and expertise.
+    </p>  
+  </div>
+
+  <!-- Grid of Service Cards -->
+  <div class="grid md:grid-cols-3 gap-8">
       <!-- Service Card -->
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
         <i class="fas fa-balance-scale text-3xl text-blue-600 mb-4"></i>
